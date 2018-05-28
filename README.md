@@ -4,6 +4,10 @@
 ## Schema Definition
 Schema definitions can be written in a programming language independent format. A schema definition has to start with a package declaration, which defines the package the schema lives in. The package's name should consist of alphanumeric characters only.
 
+```
+package mypkg
+```
+
 ### Constants
 ```
 const Pi = 3.141592
@@ -54,7 +58,7 @@ The following tag keys are supported:
     multi-line comment
 */
 ```
-Comments come in two flavors: single-line comments (starting with `//`) and multi-line comments (enclosed by `/*` and `*/)`. They can be used to document types and values in the schema. If a comment is placed directly above a type or value (without any blank line), it will normally also be translated into the generated source code as a doc comment.
+Comments come in two flavors: single-line comments (starting with `//`) and multi-line comments (enclosed by `/*` and `*/`). They can be used to document types and values in the schema. If a comment is placed directly above a type or value (without any blank line), it will normally also be translated into the generated source code as a doc comment.
 ```
 // This is the doc comment of S and
 // can span multiple lines.
@@ -74,3 +78,4 @@ The following types are natively supported by the schema definition language:
 * pointer: `*T`
 * map: `map[K]V`
 * date/time: `time`
+* raw message: `raw`
