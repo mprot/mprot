@@ -8,6 +8,13 @@ Schema definitions can be written in a programming language independent format. 
 package mypkg
 ```
 
+### Imports
+```
+import "other.mprot"
+import ext "external.mprot"
+```
+Imports make types from other schema files available. The name of an import is determined by the name of the imported file excluding its extension. Optionally, a custom import name could be specified by declaring an identifier before the import path. To use an imported type, it has to be prefixed with the import name (e.g. `other.Imported`).
+
 ### Constants
 ```
 const Pi = 3.141592
