@@ -1,0 +1,41 @@
+package mrpc
+
+// ErrCode is an enumeration of supported error codes.
+enum ErrCode {
+	OK               `0`
+	Unknown          `1`
+	Timeout          `2`
+	NotFound         `3`
+	AlreadyExists    `4`
+	InvalidArgument  `5`
+	Unauthorized     `6`
+	Forbidden        `7`
+	Internal         `8`
+	Unavailable      `9`
+}
+
+// RequestHeaders holds all supported header data for a mrpc request.
+struct RequestHeaders {
+	Timeout uint64  `1` // request timeout in nanoseconds (0 for none)
+}
+
+// Request holds the data for a single mrpc request. The target service is
+// specified by its name and must be registered at the corresponding mrpc
+// server. A service contains methods, each identified by an ordinal. With
+// this ordinal the method of the targeted service is specified.
+struct Request {
+	Service string          `1`
+	Method  int             `2`
+	Headers RequestHeaders  `3`
+	Body    bytes           `4`
+}
+
+// Response holds the data for an mrpc response. If ErrCode is not OK, an
+// error with the specified error text will be reported to the client. In
+// this case the return value will be ignored. In case of a successful call,
+// the return value will be reported to the client.
+struct Response {
+	ErrorCode ErrCode  `1`
+	ErrorText string   `2`
+	Body      bytes    `3`
+}
